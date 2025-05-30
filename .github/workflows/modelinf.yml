@@ -20,8 +20,9 @@ jobs:
         docker images
     - name: Deploy to minikube
       run:
-        kubectl apply -f deployment/modelinf-service-k8s.yaml
-        kubectl get pods
+        kubectl apply -f deploy/modelinf-service-k8s.yaml
+    - name: Checking Deployment..
+      run: kubectl get pods -A
     - name: Test service URLs
       run: |
         minikube service list
