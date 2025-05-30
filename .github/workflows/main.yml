@@ -13,7 +13,7 @@ jobs:
       run: kubectl get pods -A
     - name: Build image
       run: |
-        minikube image build -t aadilminhaz/modelinf-service:v1 .
+        minikube image build -f ./ModelInfService/Dockerfile -t aadilminhaz/modelinf-service:v1 .
     - name: Deploy to minikube
       run:
         kubectl apply -f deploy/modelinf-service-k8s.yaml
