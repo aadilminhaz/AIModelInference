@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modelinf-service
+  labels:
+    app: modelinf-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: modelinf-service
+  template:
+    metadata:
+      labels:
+        app: modelinf-service
+    spec:
+      containers:
+      - name: modelinf-service
+        image: aadilminhaz/modelinf-service:latest
+        ports:
+        - containerPort: 8000
+
+
+---
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: modelinf-service
+  namespace: default
+spec:
+  selector:
+    app: modelinf-service
+  type: NodePort
+  ports:
+  - name: http
+    targetPort: 8000
+    port: 8000
