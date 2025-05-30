@@ -17,7 +17,8 @@ jobs:
     - name: Deploy to minikube
       run:
         kubectl apply -f deploy/modelinf-service-k8s.yaml
-        kubectl wait --for=condition=ready pod -l app=modelinf-service
+    - name: Checking Deployment..
+      run: kubectl wait --for=condition=ready pod -l app=modelinf-service
     - name: Checking Deployment..
       run: kubectl get pods -A
     - name: Test service URLs
